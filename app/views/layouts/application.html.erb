@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Headlist</title>
+    <title>HeadList</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body style="padding-top: 40px;">
+    <div class="ui blue inverted fixed menu" style="border-radius: 0;">
+        <div class="header item">
+            <%= semantic_icon(:users) %>
+            <p>HeadList</p>
+        </div>
+        <% if user_signed_in? || true %>
+            <div class="item">Home</div>
+            <div class="item">Search</div>
+        <% end %>
+    </div>
+    <%= semantic_flash %>
     <%= yield %>
   </body>
 </html>
