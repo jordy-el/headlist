@@ -46,16 +46,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.save
   end
 
-  test "rejects missing date of birth" do
-    @user.date_of_birth = nil
-    assert_not @user.save
-  end
-
-  test "rejects missing city" do
-    @user.city = nil
-    assert_not @user.save
-  end
-
   # Invalid format attributes
 
   test "rejects invalid email format" do
