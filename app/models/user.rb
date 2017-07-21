@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z|\-]+\z/ }
   validates :city, format: { with: /\A[a-zA-Z|\-|\ ]+\z/ }, allow_nil: true
   has_one :timeline, dependent: :destroy
+  has_many :posts
   after_create { |user| user.timeline = Timeline.create(user: user) }
 
   def self.from_omniauth(auth)
