@@ -1,0 +1,40 @@
+<div class="ui one column centered grid">
+    <div class="column" style="width: 60vw; min-width: 450px;">
+        <%= form_for @biography, method: :patch, html: { class: "ui form" } do |f| %>
+            <h4 class="ui dividing header">Information</h4>
+            <div class="two fields">
+                <div class="field">
+                    <%= f.label :location %>
+                    <%= f.text_field :location, placeholder: "City, State, Country" %>
+                </div>
+                <div class="field">
+                    <%= f.label :hometown %>
+                    <%= f.text_field :hometown, placeholder: "City, State, Country" %>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <%= f.label :workplace %>
+                    <%= f.text_field :workplace, placeholder: "Current workplace" %>
+                </div>
+                <div class="field">
+                    <%= f.label :school %>
+                    <%= f.text_field :school, placeholder: "Current/previous school" %>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <%= f.label :website %>
+                    <%= f.text_field :website, placeholder: "example.com" %>
+                </div>
+                <div class="field">
+                    <%= f.label :github %>
+                    <%= f.text_field :github, placeholder: "github.com/username" %>
+                </div>
+            </div>
+            <div class="field">
+                <%= f.submit "Submit", class: "ui fluid green button" %>
+            </div>
+        <% end %>
+    </div>
+</div>

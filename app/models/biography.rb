@@ -1,9 +1,12 @@
 class Biography < ApplicationRecord
   belongs_to :user
-  validates :location, format: { with: /[a-zA-Z|\-|\.|,| |']+/ }, allow_nil: true
-  validates :hometown, format: { with: /[a-zA-Z|\-|\.|,| |']+/ }, allow_nil: true
-  validates :school, format: { with: /[a-zA-Z|\-|\.| |']+/ }, allow_nil: true
-  validates :workplace, format: { with: /[a-zA-Z|\-|\.| |']+/ }, allow_nil: true
-  validates :website, format: { with: /[a-zA-Z|\-|\.|]+/ }, allow_nil: true
-  validates :github, format: { with: /[a-zA-Z|\-|\.|]+/ }, allow_nil: true
+  before_save :replace_blank_with_nil
+
+  private
+
+  def replace_blank_with_nil
+    attributes.each do |key, value|
+      self[key] != "" || self[key] = nil
+    end
+  end
 end
