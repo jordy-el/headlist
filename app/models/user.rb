@@ -9,7 +9,11 @@ class User < ApplicationRecord
   validates :city, format: { with: /\A[a-zA-Z|\-|\ ]+\z/ }, allow_nil: true
   has_one :timeline, dependent: :destroy
   has_many :posts
-  after_create { |user| user.timeline = Timeline.create(user: user) }
+  has_one :biography
+  after_create do |user|
+    user.timeline = Timeline.create(user: user)
+    user.biography = Biography.create(user: user)
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
