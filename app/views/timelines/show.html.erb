@@ -35,7 +35,11 @@
             <%= f.hidden_field :timeline, value: @user.timeline.id %>
             <%= f.hidden_field :user, value: current_user.id %>
             <div class="field">
-                <%= f.text_area :content, rows: "2", placeholder: "Say something to #{@user.first_name}!" %>
+                <% if @user == current_user %>
+                    <%= f.text_area :content, rows: "2", placeholder: "Write something on your timeline!" %>
+                <% else %>
+                    <%= f.text_area :content, rows: "2", placeholder: "Say something to #{@user.first_name}!" %>
+                <% end %>
             </div>
             <div class="field">
                 <%= f.submit "Submit", class: "ui fluid primary button" %>
