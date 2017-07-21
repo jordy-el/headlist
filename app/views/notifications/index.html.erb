@@ -1,0 +1,46 @@
+<div class="ui three column stackable grid">
+    <div class="column">
+        <div class="ui centered card">
+            <div class="image">
+                <img src="https://pbs.twimg.com/profile_images/786350624581353472/bZ1rf97t_normal.jpg">
+            </div>
+            <div class="content">
+                <a class="header"><%= "#{@user.first_name} #{@user.last_name}" %></a>
+                <div class="meta">
+                    <span class="date">Joined in <%= @user.created_at.to_s[0..3] %></span>
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                    <i class="user icon"></i>
+                    Friend Count Stub
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <% if @notifications %>
+            <div class="ui segments">
+                <%= link_to "Clear All", delete_notifications_path, method: :delete, class: "ui top attached blue button" %>
+                <div class="ui segment">
+                    <h3 class="ui header"><%= "Your notifications" %></h3>
+                </div>
+                <% @notifications.each do |n| %>
+                    <div class="ui blue segment">
+                        <div class="content">
+                            <%= link_to "#{n.notification_type} notification", notifications_click_path(n), method: :post, html: { class: "author" } %>
+                            <div class="metadata">
+                                <div class="date"><%= n.created_at %></div>
+                            </div>
+                            <div class="text">
+                                <%= n.message %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <div class="column">
+    </div>
+</div>

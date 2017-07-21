@@ -23,7 +23,7 @@
                 </a>
             </div>
             <% if @user != current_user %>
-                <a class="ui bottom attached button">
+                <a class="ui bottom attached green button">
                     <i class="add icon"></i>
                     Add Stub
                 </a>
@@ -82,14 +82,14 @@
         <div class="ui cards">
             <% @randoms.each do |r| %>
                 <div class="ui centered card">
-                    <div class="content">
+                    <a href="<%= timeline_path(r) %>" class="content">
                         <img class="left floated tiny ui circular image" src="https://pbs.twimg.com/profile_images/786350624581353472/bZ1rf97t_normal.jpg">
                         <div class="header"><%= "#{r.first_name} #{r.last_name}" %></div>
-                    </div>
-                    <div class="ui bottom attached button">
+                    </a>
+                    <a class="ui bottom attached green button">
                         <i class="add icon"></i>
                         Add Stub
-                    </div>
+                    </a>
                 </div>
             <% end %>
         </div>

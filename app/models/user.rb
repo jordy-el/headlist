@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :timeline, dependent: :destroy
   has_many :posts
   has_one :biography
+  has_many :notifications
   after_create do |user|
     user.timeline = Timeline.create(user: user)
     user.biography = Biography.create(user: user)

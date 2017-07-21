@@ -9,21 +9,23 @@
   </head>
 
   <body style="padding-top: 40px;">
-    <div class="ui blue inverted fixed menu" style="border-radius: 0;">
+    <div class="ui black inverted fixed menu" style="border-radius: 0;">
         <div class="header item">
             <%= semantic_icon(:users) %>
             <p>HeadList</p>
         </div>
         <% if user_signed_in? %>
-            <div class="item">Posts</div>
-            <div class="item"><%= link_to current_user.first_name, self_timeline_path %></div>
-            <div class="item">Search</div>
+            <a class="item">Posts</a>
+            <a href="<%= self_timeline_path %>" class="item"><%= current_user.first_name %></a>
+            <a class="item">Search</a>
             <div class="menu right">
-                <div class="item"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></div>
+                <% if current_user.notifications.where(seen: false).length > 0 %>
+                    <%= link_to current_user.notifications.where(seen: false).length, notifications_path, class: "active red item" %>
+                <% end %>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "item" %>
             </div>    
         <% end %>
     </div>
-    <%= semantic_flash %>
     <%= yield %>
   </body>
   <script>

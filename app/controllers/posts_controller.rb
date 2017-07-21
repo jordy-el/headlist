@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     post_parameters[:user] = User.find(post_params[:user])
     @post = Post.new(post_parameters)
     if @post.save!
+      @post.timeline.user == current_user || Notification.create(user: @post.timeline.user, message: "#{@post.user.first_name} #{@post.user.last_name} posted on your timeline", notification_type: "Post")
       redirect_to timeline_path(@post.timeline.user)
     else
       redirect_to :back
