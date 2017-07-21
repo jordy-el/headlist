@@ -5,5 +5,6 @@ class TimelinesController < ApplicationController
     redirect_to self_timeline_path if params[:id] == current_user.id.to_s
     @user = params[:id].nil? || params[:id].empty? ? current_user : User.find(params[:id])
     @posts = @user.timeline.posts.order(created_at: :desc)
+    @randoms = User.where.not(id: current_user.id).where.not(id: @user.id).take(5)
   end
 end
