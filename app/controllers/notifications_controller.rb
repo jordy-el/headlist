@@ -13,6 +13,8 @@ class NotificationsController < ApplicationController
     case @notification.notification_type
     when "Post"
       redirect_to self_timeline_path
+    when "Friend"
+      redirect_to self_friends_path
     end
   end
 

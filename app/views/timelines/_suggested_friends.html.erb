@@ -1,0 +1,11 @@
+<div class="ui cards">
+    <% @suggested_friends.each do |r| %>
+        <div class="ui centered card">
+            <a href="<%= timeline_path(r) %>" class="content">
+                <img class="left floated tiny ui circular image" src="https://pbs.twimg.com/profile_images/786350624581353472/bZ1rf97t_normal.jpg">
+                <div class="header"><%= "#{r.first_name} #{r.last_name}" %></div>
+            </a>
+            <%= link_to "Add Friend", send_request_path(r), method: :post, class: "ui bottom attached green basic button" %>
+        </div>
+    <% end %>
+</div>

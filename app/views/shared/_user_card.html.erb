@@ -1,0 +1,20 @@
+<div class="ui centered card">
+    <div class="image">
+        <img src="https://pbs.twimg.com/profile_images/786350624581353472/bZ1rf97t_normal.jpg">
+    </div>
+    <div class="content">
+        <a class="header"><%= "#{@user.first_name} #{@user.last_name}" %></a>
+        <div class="meta">
+            <span class="date">Joined in <%= @user.created_at.to_s[0..3] %></span>
+        </div>
+    </div>
+    <div class="extra content">
+        <a href="<%= friends_path(@user) %>">
+            <i class="user icon"></i>
+            <%= @user.friends.length %> Friends
+        </a>
+    </div>
+    <% if @user != current_user && !@user.friends_with?(current_user) && !@user.pending_friends.include?(current_user) %>
+        <%= link_to "Add Friend", send_request_path(@user), method: :post, class: "ui bottom attached blue button" %>
+    <% end %>
+</div>

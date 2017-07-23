@@ -1,72 +1,58 @@
-<div class="ui four item secondary pointing menu", style="border-radius: 0; margin-top: 5px;">
-    <%= link_to "Timeline", timeline_path(@user), class: "item" %>
-    <a class="item">Friends</a>
-    <a class="item">Photos</a>
-    <%= link_to "Bio", biography_path(@user), class: "active item" %>
-</div>
-<div class="ui two column stackable grid">
-    <div class="column">
-        <div class="ui centered card">
-            <div class="content">
-                <div class="header">Information</div>
-            </div>
-            <div class="content">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="users icon"></i>
-                        <div class="content">
-                            <%= @biography.workplace || "No workplace provided" %>
+<%= render 'shared/links', location: :bio %>
+<div class="ui centered grid">
+    <div class="column" style="width: 60vw; min-width: 450px;">
+        <div class="ui centered segments">
+            <div class="ui segment">
+                <h4 class="ui header">Information</h4>
+                <div class="content">
+                    <div class="ui list">
+                        <div class="item">
+                            <i class="users icon"></i>
+                            <div class="content">
+                                <%= @biography.workplace || "No workplace provided" %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <i class="book icon"></i>
-                        <%= @biography.school || "No school provided" %>
-                    </div>
-                    <div class="item">
-                        <i class="marker icon"></i>
-                        <div class="content">
-                            <%= @biography.location || "No location provided" %>
+                        <div class="item">
+                            <i class="book icon"></i>
+                            <%= @biography.school || "No school provided" %>
                         </div>
-                    </div>
-                    <div class="item">
-                        <i class="home icon"></i>
-                        <%= @biography.hometown || "No hometown provided" %>
-                    </div>
-                    <div class="item">
-                        <i class="linkify icon"></i>
-                        <div class="content">
-                            <% if @biography.website %>
-                                <%= link_to @biography.website, @biography.website %>
-                            <% else %>
-                                <%= "No website provided" %>
-                            <% end %>
+                        <div class="item">
+                            <i class="marker icon"></i>
+                            <div class="content">
+                                <%= @biography.location || "No location provided" %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <i class="github icon"></i>
-                        <div class="content">
-                            <% if @biography.github %>
-                                <%= link_to @biography.github, @biography.github %>
-                            <% else %>
-                                <%= "No github provided" %>
-                            <% end %>
+                        <div class="item">
+                            <i class="home icon"></i>
+                            <%= @biography.hometown || "No hometown provided" %>
+                        </div>
+                        <div class="item">
+                            <i class="linkify icon"></i>
+                            <div class="content">
+                                <% if @biography.website %>
+                                    <%= link_to @biography.website, @biography.website %>
+                                <% else %>
+                                    <%= "No website provided" %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="github icon"></i>
+                            <div class="content">
+                                <% if @biography.github %>
+                                    <%= link_to @biography.github, @biography.github %>
+                                <% else %>
+                                    <%= "No github provided" %>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 </div>
+                </div>
+                <% if @user == current_user %>
+                    <a href="<%= edit_biography_path(current_user) %>" class="ui bottom attached basic green button">Edit</a>
+                <% end %>
             </div>
-            <% if @user == current_user %>
-                <a href="<%= edit_biography_path(current_user) %>" class="ui bottom attached green button">Edit</a>
-            <% end %>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui centered card">
-            <div class="content">
-                <div class="header">Likes</div>
-            </div>
-            <div class="content">
-                Likes stub
-            </content>
         </div>
     </div>
 </div>

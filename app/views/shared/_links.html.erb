@@ -1,0 +1,6 @@
+<div class="ui four item secondary pointing menu", style="border-radius: 0; margin-top: 5px;">
+    <%= link_to "Timeline", timeline_path(@user), class: "#{'active' if location == :timeline} item" %>
+    <%= link_to "Friends", friends_path(@user), class: "#{'active' if location == :friends} item" %>
+    <%= link_to "Photos", '#', class: "#{'active' if location == :photos} item" %>
+    <%= link_to "Bio", biography_path(@user), class: "#{'active' if location == :bio} item" %>
+</div>
