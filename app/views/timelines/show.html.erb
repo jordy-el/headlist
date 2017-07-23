@@ -26,7 +26,7 @@
                 <% @posts.each do |p| %>
                     <div class="comment">
                         <a class="avatar">
-                            <img src="https://pbs.twimg.com/profile_images/786350624581353472/bZ1rf97t_normal.jpg">
+                            <img>
                         </a>
                         <div class="content">
                             <%= link_to "#{p.user.first_name} #{p.user.last_name}", timeline_path(p.user), html: { class: "author" } %>
