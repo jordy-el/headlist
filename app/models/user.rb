@@ -36,4 +36,12 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def suggested_friends
+    User.where.not(id: self)
+      .where.not(id: self.friends)
+      .where.not(id: self.pending_friends)
+      .where.not(id: self.requested_friends)
+      .take(5)
+  end
 end

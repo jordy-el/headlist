@@ -6,8 +6,8 @@ class PostsController < ApplicationController
     @friends = current_user.friends
     @posts = Post.where(user: current_user.friends, timeline: current_user.friends.map(&:timeline))
       .or(Post.where(user: current_user))
-      .order(created_at: :asc)
-    @suggested_friends = suggested_friends
+      .order(created_at: :desc)
+    @suggested_friends = current_user.suggested_friends
   end
 
   def create
@@ -27,14 +27,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :timeline, :user)
-  end
-
-  def suggested_friends
-    User.where.not(id: current_user.id)
-      .where.not(id: @user.id)
-      .where.not(id: current_user.friends.map(&:id))
-      .where.not(id: current_user.pending_friends.map(&:id))
-      .where.not(id: current_user.requested_friends.map(&:id))
-      .take(5)
   end
 end

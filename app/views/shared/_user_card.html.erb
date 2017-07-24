@@ -3,9 +3,9 @@
         <img>
     </div>
     <div class="content">
-        <a class="header"><%= "#{@user.first_name} #{@user.last_name}" %></a>
+        <div class="header"><%= "#{@user.first_name} #{@user.last_name}" %></div>
         <div class="meta">
-            <span class="date">Joined in <%= @user.created_at.to_s[0..3] %></span>
+            <span class="date">Joined <%= time_ago_in_words(@user.created_at) %> ago</span>
         </div>
     </div>
     <div class="extra content">

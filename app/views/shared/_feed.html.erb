@@ -7,8 +7,12 @@
             </a>
             <div class="content">
                 <%= link_to "#{p.user.first_name} #{p.user.last_name}", timeline_path(p.user), html: { class: "author" } %>
+                <% if p.timeline != p.user.timeline && @user != p.timeline.user %>
+                     > 
+                    <%= link_to "#{p.timeline.user.first_name} #{p.timeline.user.last_name}", timeline_path(p.user), html: { class: "author" } %>
+                <% end %>
                 <div class="metadata">
-                    <div class="date"><%= p.created_at %></div>
+                    <div class="date"><%= time_ago_in_words(p.created_at) + " ago" %></div>
                 </div>
                 <div class="text">
                     <%= p.content %>
