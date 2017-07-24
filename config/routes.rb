@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get '/users/sign_in', to: redirect('')
   get '/profile', to: 'timelines#show', as: 'self_timeline'
   get '/users/:id', to: 'timelines#show', as: 'timeline'
   get '/biography', to: 'biographies#show', as: 'self_biography'
@@ -17,6 +18,5 @@ Rails.application.routes.draw do
   resources :biographies, only: [:edit, :update]
   resources :notifications, only: :index
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  get '/users/sign_in', to: redirect('')
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
