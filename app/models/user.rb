@@ -9,9 +9,9 @@ class User < ApplicationRecord
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z|\-]+\z/ }
   validates :city, format: { with: /\A[a-zA-Z|\-|\ ]+\z/ }, allow_nil: true
   has_one :timeline, dependent: :destroy
-  has_many :posts
-  has_one :biography
-  has_many :notifications
+  has_many :posts, dependent: :destroy
+  has_one :biography, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   after_create do |user|
     user.timeline = Timeline.create(user: user)
     user.biography = Biography.create(user: user)
