@@ -1,0 +1,30 @@
+<div class="ui large threaded comments">
+    <h3 class="ui dividing header"><%= locals[:header] %></h3>
+    <% @posts.each do |p| %>
+        <div class="comment">
+            <a class="avatar">
+                <img>
+            </a>
+            <div class="content">
+                <%= link_to "#{p.user.first_name} #{p.user.last_name}", timeline_path(p.user), html: { class: "author" } %>
+                <div class="metadata">
+                    <div class="date"><%= p.created_at %></div>
+                </div>
+                <div class="text">
+                    <%= p.content %>
+                </div>
+                <!--<div class="actions">
+                    <a class="reply active">Reply</a>
+                </div>
+                <form class="ui reply form">
+                    <div class="field">
+                        <textarea></textarea>
+                    </div>
+                    <div class="ui primary submit labeled icon button">
+                        <i class="icon edit"></i> Add Reply
+                    </div>
+                </form>-->
+            </div>
+        </div>
+    <% end %>
+</div>

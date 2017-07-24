@@ -4,10 +4,8 @@
         <%= render 'shared/user_card' %>
     </div>
     <div class="column">
-        <% if @user == current_user || current_user.friends_with?(@user) %>
-            <%= render 'shared/post_form' %>
-        <% end %>
-        <%= render 'shared/feed', locals: {header: "#{@user.first_name}'s Timeline"} %>
+        <%= render 'shared/post_form' %>
+        <%= render 'shared/feed', locals: {header: "News Feed"} %>
     </div>
     <div class="column">
         <%= render 'shared/suggested_friends' %>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/biographies/:id', to: 'biographies#show', as: 'biography'
   get '/friends', to: 'friends#show', as: 'self_friends'
   get '/friends/:id', to: 'friends#show', as: 'friends'
+  get '/feed', to: 'posts#index', as: 'feed'
   post '/friends/accept/:id', to: 'friends#accept', as: 'accept_request'
   post '/friends/decline/:id', to: 'friends#decline', as: 'decline_request'
   post '/friends/new/:id', to: 'friends#create', as: 'send_request'

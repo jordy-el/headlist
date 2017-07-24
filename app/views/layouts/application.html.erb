@@ -15,8 +15,8 @@
             <p>HeadList</p>
         </div>
         <% if user_signed_in? %>
-            <a class="item">Posts</a>
-            <a href="<%= self_timeline_path %>" class="item"><%= current_user.first_name %></a>
+            <%= link_to "Posts", feed_path, class: "item" %>
+            <%= link_to current_user.first_name, self_timeline_path, class: "item" %>
             <a class="item">Search</a>
             <div class="menu right">
                 <% if current_user.notifications.where(seen: false).length > 0 %>
