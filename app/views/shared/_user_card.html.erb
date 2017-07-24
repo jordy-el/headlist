@@ -14,7 +14,7 @@
             <%= @user.friends.length %> Friends
         </a>
     </div>
-    <% if @user != current_user && !@user.friends_with?(current_user) && !@user.pending_friends.include?(current_user) %>
+    <% if addable? %>
         <%= link_to "Add Friend", send_request_path(@user), method: :post, class: "ui bottom attached blue button" %>
     <% end %>
 </div>
