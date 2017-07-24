@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @friends = current_user.friends
-    @posts = Post.where(timeline: @friends.pluck(:timeline))
+    @posts = Post.where(timeline: @friends.map(&:timeline)).order(created_at: :asc)
     @suggested_friends = suggested_friends
   end
 
