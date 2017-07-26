@@ -37,6 +37,10 @@ class User < ApplicationRecord
     end
   end
 
+  def full_name
+    first_name + " " + last_name
+  end
+
   def suggested_friends
     User.where.not(id: self)
       .where.not(id: self.friends)

@@ -1,8 +1,8 @@
 <div class="ui fluid raised card">
     <div class="content">
-        <div class="header"><%= @post.user.first_name %>'s post</div>
+        <div class="header"><%= @post.user.full_name %>'s post</div>
         <div class="meta">
-        <div class="date"><%= time_ago_in_words(@post.created_at) + " ago" %></div>
+            <div class="date"><%= time_ago_in_words(@post.created_at) + " ago on " + @post.timeline.user.full_name + "'s timeline" %></div>
         </div>
         <div class="description">
             <h5><%= @post.content %></h5>
