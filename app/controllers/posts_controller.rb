@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @friends = current_user.friends
     @posts = Post.where(user: current_user.friends, timeline: current_user.friends.map(&:timeline))
       .or(Post.where(user: current_user))
+      .paginate(page: params[:page], per_page: 20)
       .order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
   end

@@ -21,6 +21,7 @@
 /yarn-error.log
 
 .byebug_history
+.eslintrc.json
 
 # Ignore application configuration
 /config/application.yml

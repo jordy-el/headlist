@@ -4,7 +4,7 @@ class TimelinesController < ApplicationController
   def show
     redirect_to self_timeline_path if params[:id] == current_user.id.to_s
     @user = self_or_other(params[:id])
-    @posts = @user.timeline.posts.order(created_at: :desc)
+    @posts = @user.timeline.posts.paginate(page: params[:page], per_page: 20).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
   end
 
