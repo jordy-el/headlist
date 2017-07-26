@@ -11,6 +11,14 @@ class PostsController < ApplicationController
     @suggested_friends = current_user.suggested_friends
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @user = @post.user
+    @timeline = @post.timeline
+    @posts = Post.all.paginate(page: params[:page])
+    @suggested_friends = current_user.suggested_friends
+  end
+
   def create
     post_parameters = post_params
     post_parameters[:timeline] = Timeline.find(post_params[:timeline])

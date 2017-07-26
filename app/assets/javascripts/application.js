@@ -20,7 +20,6 @@
 
 $(document).ready(function() {
     $('#feed').infiniteScroll({
-        // options
         path: '.next_page',
         append: '.post',
         history: false,

@@ -17,6 +17,11 @@
                 <div class="text">
                     <%= p.content %>
                 </div>
+                <div class="actions">
+                    <a class="like">Like</a>
+                    <%= link_to "View", post_path(p), class: "show" %>
+                    <a class="reply">Reply</a>
+                </div>
                 <!--<div class="actions">
                     <a class="reply active">Reply</a>
                 </div>
