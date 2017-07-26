@@ -17,12 +17,3 @@
 //= require jquery_ujs
 // Loads all Semantic javascripts
 //= require semantic-ui
-
-$(document).ready(function() {
-    $('#feed').infiniteScroll({
-        path: '.next_page',
-        append: '.post',
-        history: false,
-    });
-});
-

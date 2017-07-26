@@ -28,4 +28,16 @@
     </div>
     <%= yield %>
   </body>
+  <script>
+    $(document).ready(function() {
+        $('#feed').infiniteScroll({
+            hideNav: '.pagination',
+            path: '.next_page',
+            append: '.post',
+            history: false,
+            checkLastPage: true,
+            debug: true
+        });
+    });
+  </script>
 </html>
