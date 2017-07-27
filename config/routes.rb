@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/friends/new/:id', to: 'friends#create', as: 'send_request'
   post '/notifications/:id/click', to: 'notifications#click', as: 'notifications_click'
   match '/notifications/delete', to: 'notifications#delete_all', as: 'delete_notifications', via: :delete
-  resources :posts, only: [:create, :show]
+  resources :posts, only: [:create, :show, :destroy]
   resources :biographies, only: [:edit, :update]
   resources :notifications, only: :index
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

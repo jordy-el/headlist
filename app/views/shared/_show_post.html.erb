@@ -5,7 +5,12 @@
             <div class="date"><%= time_ago_in_words(@post.created_at) + " ago on " + @post.timeline.user.full_name + "'s timeline" %></div>
         </div>
         <div class="description">
-            <h5><%= @post.content %></h5>
+            <% if @post.photo.file? %>
+                <%= image_tag @post.photo.url(:medium), class: "ui fluid rounded image" %>
+                <h5><%= @post.description %></h6>
+            <% else %>
+                <h5><%= @post.content %></h5>
+            <% end %>
         </div>
     </div>
     <div class="extra content">
@@ -13,5 +18,8 @@
             <i class="like icon"></i>
             Like
         </a>
+        <% if @post.user == current_user %>
+            <%= link_to "Delete", post_path(@post), method: :delete, class: "right floated delete", data: { confirm: "Are you sure? That can't be undone" } %>
+        <% end %>
     </div>
 </div>

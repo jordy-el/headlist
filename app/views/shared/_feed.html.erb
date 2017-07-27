@@ -15,12 +15,20 @@
                     <div class="date"><%= time_ago_in_words(p.created_at) + " ago" %></div>
                 </div>
                 <div class="text">
-                    <%= p.content %>
+                    <% if p.photo.file? %>
+                        <a href="<%= post_path(p) %>"><%= image_tag p.photo.url(:thumb), class: "ui rounded bordered fluid image" %></a>
+                        <%= p.description %>
+                    <% else %>
+                        <%= p.content %>
+                    <% end %>
                 </div>
                 <div class="actions">
                     <a class="like">Like</a>
                     <%= link_to "View", post_path(p), class: "show" %>
                     <a class="reply">Reply</a>
+                    <% if p.user == current_user %>
+                        <%= link_to "Delete", post_path(p), method: :delete, class: "delete", data: { confirm: "Are you sure? That can't be undone" } %>
+                    <% end %>
                 </div>
                 <!--<div class="actions">
                     <a class="reply active">Reply</a>
@@ -36,5 +44,7 @@
             </div>
         </div>
     <% end %>
-    <%= paginate @posts %>
+    <% if @posts.length >= 20 %>
+        <%= paginate @posts %>
+    <% end %>
 </div>

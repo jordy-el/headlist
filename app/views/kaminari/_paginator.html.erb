@@ -23,3 +23,12 @@
     <% end %>
   </nav>
 <% end -%>
+<script>
+    $('#feed').infiniteScroll({
+        hideNav: '.pagination',
+        path: '.next_page',
+        append: '.post',
+        history: false,
+        checkLastPage: true
+    });
+</script>

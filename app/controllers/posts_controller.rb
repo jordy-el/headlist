@@ -16,6 +16,8 @@ class PostsController < ApplicationController
     @user = @post.user
     @timeline = @post.timeline
     @suggested_friends = current_user.suggested_friends
+  rescue ActiveRecord::RecordNotFound
+    redirect_to feed_path
   end
 
   def create
@@ -31,9 +33,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy if @post.user == current_user
+    redirect_to request.referrer
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:content, :timeline, :user)
+    params.require(:post).permit(:content, :timeline, :user, :description, :photo)
   end
 end

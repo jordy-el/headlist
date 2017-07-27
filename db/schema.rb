@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721105861) do
+ActiveRecord::Schema.define(version: 20170727095518) do
 
   create_table "biographies", force: :cascade do |t|
     t.integer "user_id"
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(version: 20170721105861) do
     t.integer "timeline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string "description"
     t.index ["timeline_id"], name: "index_posts_on_timeline_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
