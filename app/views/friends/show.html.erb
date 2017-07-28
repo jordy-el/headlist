@@ -1,7 +1,23 @@
 <%= render 'shared/links', location: :friends %>
 <div class="ui one column centered grid">
     <div class="column" style="width: 60vw; min-width: 450px;">
-        <div class="ui segments">
+        <div class="ui raised segments">
+            <div class="ui segment">
+                <h2 class="ui center aligned dividing icon header">
+                    <i class="circular users icon"></i>
+                    <%= @user == current_user ? 'Your ' : "#{@user.first_name}'s " %>Friends
+                </h2>
+                <div class="ui list">
+                    <% @friends.each do |f| %>
+                        <div class="item">
+                            <%= image_tag f.avatar.url(:thumb), class: "ui avatar image" %>
+                            <div class="content">
+                                <%= link_to "#{f.first_name} #{f.last_name}", timeline_path(f), class: "header" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
             <% if current_user == @user %>
                 <div class="ui horizontal segments">
                     <div class="ui segment">
@@ -9,7 +25,7 @@
                         <div class="ui list">
                             <% @requests.each do |r| %>
                                 <div class="item">
-                                    <img class="ui avatar image">
+                                    <%= image_tag r.avatar.url(:thumb), class: "ui avatar image" %>
                                     <div class="content">
                                         <%= link_to "#{r.first_name} #{r.last_name}", timeline_path(r), class: "header" %>
                                         <div class="description">
@@ -26,7 +42,7 @@
                         <div class="ui list">
                             <% @pending.each do |p| %>
                                 <div class="item">
-                                    <img class="ui avatar image">
+                                    <%= image_tag p.avatar.url(:thumb), class: "ui avatar image" %>
                                     <div class="content">
                                         <%= link_to "#{p.first_name} #{p.last_name}", timeline_path(p), class: "header" %>
                                     </div>
@@ -36,22 +52,6 @@
                     </div>
                 </div>
             <% end %>
-            <div class="ui segment">
-                <h2 class="ui center aligned dividing icon header">
-                    <i class="circular users icon"></i>
-                    <%= @user == current_user ? 'Your ' : "#{@user.first_name}'s " %>Friends
-                </h2>
-                <div class="ui list">
-                    <% @friends.each do |f| %>
-                        <div class="item">
-                            <img class="ui avatar image">
-                            <div class="content">
-                                <%= link_to "#{f.first_name} #{f.last_name}", timeline_path(f), class: "header" %>
-                            </div>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
         </div>
     </div>
 </div>

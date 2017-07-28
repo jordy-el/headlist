@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/system/users/avatars/missing/:style/avatar.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z|\-]+\z/ }
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z|\-]+\z/ }
   validates :city, format: { with: /\A[a-zA-Z|\-|\ ]+\z/ }, allow_nil: true

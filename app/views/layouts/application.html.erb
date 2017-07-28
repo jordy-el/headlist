@@ -15,8 +15,8 @@
             <p>HeadList</p>
         </div>
         <% if user_signed_in? %>
-            <%= link_to "Feed", feed_path, class: "item" %>
-            <%= link_to current_user.first_name, self_timeline_path, class: "item" %>
+            <%= link_to "Feed", feed_path, class: "#{'active blue ' if params[:controller] == 'posts' && params[:action] != 'show'}item" %>
+            <%= link_to current_user.first_name, self_timeline_path, class: "#{'active blue ' if params[:controller] != 'posts' && params[:controller] != 'search'}item" %>
             <a class="item">Search</a>
             <div class="menu right">
                 <% if current_user.notifications.where(seen: false).length > 0 %>

@@ -1,9 +1,9 @@
 <%= render 'shared/links', location: :bio %>
 <div class="ui centered grid">
     <div class="column" style="width: 60vw; min-width: 450px;">
-        <div class="ui centered segments">
+        <div class="ui centered raised segments">
             <div class="ui segment">
-                <h4 class="ui header">Information</h4>
+                <h4 class="ui header"><%= @user.full_name %></h4>
                 <div class="content">
                     <div class="ui list">
                         <div class="item">

@@ -2,8 +2,8 @@
     <h3 class="ui dividing header"><%= locals[:header] %></h3>
     <% @posts.each do |p| %>
         <div class="comment post">
-            <a class="avatar">
-                <img>
+            <a class="avatar" href="<%= post_path(p) %>">
+                <%= image_tag p.user.avatar.url(:thumb) %>
             </a>
             <div class="content">
                 <%= link_to "#{p.user.first_name} #{p.user.last_name}", timeline_path(p.user), html: { class: "author" } %>

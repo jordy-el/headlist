@@ -6,8 +6,17 @@ class PostsController < ApplicationController
     @friends = current_user.friends
     @posts = Post.where(user: current_user.friends, timeline: current_user.friends.map(&:timeline))
       .or(Post.where(user: current_user))
-      .page(params[:page]).per(20)
-      .order(created_at: :desc)
+    @location = :all
+    if params[:filter]
+      if params[:filter] == "photos"
+        @posts = @posts.where.not(photo_file_name: nil)
+        @location = :photos
+      elsif params[:filter] == "news"
+        @posts = @posts.where(photo_file_name: nil)
+        @location = :news
+      end
+    end
+    @posts = @posts.page(params[:page]).per(20).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
   end
 

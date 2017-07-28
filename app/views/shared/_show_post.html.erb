@@ -1,8 +1,8 @@
 <div class="ui fluid raised card">
     <div class="content">
-        <div class="header"><%= @post.user.full_name %>'s post</div>
+        <%= link_to "#{@post.user.full_name}'s post", timeline_path(@post.user), class: "header" %>
         <div class="meta">
-            <div class="date"><%= time_ago_in_words(@post.created_at) + " ago on " + @post.timeline.user.full_name + "'s timeline" %></div>
+            <div class="date"><%= time_ago_in_words(@post.created_at) + " ago on " + "#{@post.timeline.user == @post.user ? "his own" : @post.timeline.user.full_name + "'s"}" + " timeline" %></div>
         </div>
         <div class="description">
             <% if @post.photo.file? %>
