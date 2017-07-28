@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/friends/decline/:id', to: 'friends#decline', as: 'decline_request'
   post '/friends/new/:id', to: 'friends#create', as: 'send_request'
   post '/notifications/:id/click', to: 'notifications#click', as: 'notifications_click'
+  post '/likes/:id', to: 'likes#create', as: 'likes'
   match '/notifications/delete', to: 'notifications#delete_all', as: 'delete_notifications', via: :delete
   resources :posts, only: [:create, :show, :destroy]
   resources :biographies, only: [:edit, :update]

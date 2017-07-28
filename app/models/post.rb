@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   belongs_to :timeline
   has_many :comments, dependent: :destroy
   before_validation :replace_blank_with_nil
+  acts_as_votable
 
   def can_have_file_and_description_or_content
     errors.add(:content, "cannot be present while photo upload is present") if (photo.file? || description) && content

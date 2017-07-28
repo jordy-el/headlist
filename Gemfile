@@ -66,3 +66,4 @@ gem 'figaro'
 gem 'has_friendship', git: 'https://github.com/adamjleonard/has_friendship.git'
 gem 'kaminari'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'acts_as_votable'

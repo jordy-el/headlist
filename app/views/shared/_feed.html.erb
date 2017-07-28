@@ -23,7 +23,7 @@
                     <% end %>
                 </div>
                 <div class="actions">
-                    <a class="like">Like</a>
+                    <%= link_to semantic_icon('thumbs outline up') + " " + p.votes_for.length.to_s + " Like", likes_path(p, type: :post), method: :post, class: "like" %>
                     <%= link_to "View", post_path(p), class: "show" %>
                     <a class="reply">Reply</a>
                     <% if p.user == current_user %>

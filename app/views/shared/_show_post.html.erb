@@ -14,10 +14,7 @@
         </div>
     </div>
     <div class="extra content">
-        <a class="left floated like">
-            <i class="like icon"></i>
-            Like
-        </a>
+        <%= link_to semantic_icon('thumbs outline up') + " " + @post.votes_for.length.to_s + " Like", likes_path(@post, type: :post), method: :post, class: "left floated like" %>
         <% if @post.user == current_user %>
             <%= link_to "Delete", post_path(@post), method: :delete, class: "right floated delete", data: { confirm: "Are you sure? That can't be undone" } %>
         <% end %>
