@@ -27,4 +27,4 @@
 /config/application.yml
 
 # Ignore paperclip uploads
-/public/system/*
+/public/system/posts/photos/*

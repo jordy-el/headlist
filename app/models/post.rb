@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   validate :can_have_file_and_description_or_content
   belongs_to :user
   belongs_to :timeline
+  has_many :comments, dependent: :destroy
   before_validation :replace_blank_with_nil
 
   def can_have_file_and_description_or_content

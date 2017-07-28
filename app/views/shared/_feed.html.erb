@@ -1,4 +1,4 @@
-<div class="ui large threaded comments" id="feed">
+<div class="ui large comments" id="feed">
     <h3 class="ui dividing header"><%= locals[:header] %></h3>
     <% @posts.each do |p| %>
         <div class="comment post">
@@ -6,7 +6,7 @@
                 <%= image_tag p.user.avatar.url(:thumb) %>
             </a>
             <div class="content">
-                <%= link_to "#{p.user.first_name} #{p.user.last_name}", timeline_path(p.user), html: { class: "author" } %>
+                <%= link_to "#{p.user.full_name}", timeline_path(p.user), html: { class: "author" } %>
                 <% if p.timeline != p.user.timeline %>
                      > 
                     <%= link_to "#{p.timeline.user.first_name} #{p.timeline.user.last_name}", timeline_path(p.timeline.user), html: { class: "author" } %>
@@ -30,17 +30,10 @@
                         <%= link_to "Delete", post_path(p), method: :delete, class: "delete", data: { confirm: "Are you sure? That can't be undone" } %>
                     <% end %>
                 </div>
-                <!--<div class="actions">
-                    <a class="reply active">Reply</a>
-                </div>
-                <form class="ui reply form">
-                    <div class="field">
-                        <textarea></textarea>
-                    </div>
-                    <div class="ui primary submit labeled icon button">
-                        <i class="icon edit"></i> Add Reply
-                    </div>
-                </form>-->
+                <% if !p.comments.nil? %>
+                    <%= render 'shared/post_comments', post: p %>
+                <% end %>
+                <%= render 'shared/post_reply_form', post: p %>
             </div>
         </div>
     <% end %>

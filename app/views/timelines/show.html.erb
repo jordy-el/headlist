@@ -1,15 +1,15 @@
 <%= render 'shared/links', location: :timeline %>
 <div class="ui three column stackable grid">
-    <div class="column">
+    <div class="five wide column">
         <%= render 'shared/user_card' %>
     </div>
-    <div class="column">
+    <div class="six wide column">
         <% if @user == current_user || @user.friends_with?(current_user) %>
             <%= render 'shared/post_form' %>
         <% end %>
         <%= render 'shared/feed', locals: {header: "#{@user.first_name}'s Timeline"} %>
     </div>
-    <div class="column">
+    <div class="five wide column">
         <%= render 'shared/suggested_friends' %>
     </div>
 </div>

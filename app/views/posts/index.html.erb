@@ -1,13 +1,13 @@
 <%= render 'shared/feed_links' %>
 <div class="ui three column stackable grid">
-    <div class="column">
+    <div class="five wide column">
         <%= render 'shared/user_card' %>
     </div>
-    <div class="column">
+    <div class="six wide column">
         <%= render 'shared/post_form' %>
         <%= render 'shared/feed', locals: {header: "News Feed"} %>
     </div>
-    <div class="column">
+    <div class="five wide column">
         <%= render 'shared/suggested_friends' %>
     </div>
 </div>

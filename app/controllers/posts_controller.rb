@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     end
     @posts = @posts.page(params[:page]).per(20).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
+    @comment = Comment.new
   end
 
   def show
@@ -25,6 +26,7 @@ class PostsController < ApplicationController
     @user = @post.user
     @timeline = @post.timeline
     @suggested_friends = current_user.suggested_friends
+    @comment = Comment.new
   rescue ActiveRecord::RecordNotFound
     redirect_to feed_path
   end

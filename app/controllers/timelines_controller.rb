@@ -6,6 +6,7 @@ class TimelinesController < ApplicationController
     @user = self_or_other(params[:id])
     @posts = @user.timeline.posts.page(params[:page]).per(20).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
+    @comment = Comment.new
   end
 
   private
