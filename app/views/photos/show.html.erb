@@ -1,0 +1,26 @@
+<%= render 'shared/links', location: :photos %>
+<div class="ui centered grid">
+    <div class="ui twelve wide column">
+        <div class="ui four stackable special cards">
+            <% @photos.each do |p| %>
+                <div class="card">
+                    <a class="ui dimmable image" href="<%= post_path(p) %>">
+                        <div class="ui dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="content"><%= p.description && p.description.length > 20 ? p.description[0, 20] + "..." : p.description %></div>
+                                </div>
+                            </div>
+                        </div>
+                        <%= image_tag p.photo.url(:thumb) %>
+                    </a>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<script>
+    $('.special.cards .image').dimmer({
+        on: 'hover'
+    });
+</script>

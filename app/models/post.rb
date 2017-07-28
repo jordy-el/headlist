@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_attached_file :photo, styles: { medium: "500x500^", thumb: "200x200^" }
+  has_attached_file :photo, styles: { medium: "500x500#", thumb: "200x200#" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   validate :can_have_file_and_description_or_content
   belongs_to :user
