@@ -3,10 +3,10 @@
         <% if @notifications %>
             <div class="ui segments">
                 <% unless @notifications.empty? %>
-                    <%= link_to "Clear All", delete_notifications_path, method: :delete, class: "ui top attached blue button" %>
+                    <%= link_to 'Clear All', delete_notifications_path, method: :delete, class: 'ui top attached blue button' %>
                 <% end %>
                 <div class="ui segment">
-                    <h3 class="ui header"><%= "Your notifications" %></h3>
+                      <h3 class="ui header"><%= 'Your notifications' %></h3>
                 </div>
                 <% if @notifications.empty? %>
                     <div class="ui blue center aligned segment">
