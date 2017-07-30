@@ -12,8 +12,6 @@ class Notification < ApplicationRecord
   end
 
   def turn_blank_into_nil
-    attributes.each do |key, value|
-      self[key] != "" || self[key] = nil
-    end
+    attributes.each { |key, value| self[key] = nil if value == '' }
   end
 end
