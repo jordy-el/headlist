@@ -25,7 +25,11 @@ class FriendsController < ApplicationController
     @user = User.find(params[:id])
     redirect_to self_timeline_path if @user == current_user
     current_user.friend_request(@user)
-    Notification.create(user: @user, message: "#{@user.first_name} #{@user.last_name} sent you a friend request", notification_type: "Friend Request")
+    Notification.create(
+        user: @user,
+        message: "#{@user.full_name} sent you a friend request",
+        notification_type: 'Friend Request'
+    )
     redirect_to self_timeline_path
   end
 end
