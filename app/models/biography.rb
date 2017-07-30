@@ -6,7 +6,7 @@ class Biography < ApplicationRecord
 
   def replace_blank_with_nil
     attributes.each do |key, value|
-      self[key] != "" || self[key] = nil
+      self[key] = nil if value == ''
     end
   end
 end

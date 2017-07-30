@@ -18,7 +18,7 @@
                 <% @notifications.each_with_index do |n, index| %>
                     <div class="ui <%= 'blue' if index == 0 %> center aligned segment">
                         <div class="content">
-                            <%= link_to "#{n.notification_type}", notifications_click_path(n), method: :post, html: { class: "author" } %>
+                            <%= link_to "#{n.notification_type}", notifications_click_path(n), method: :post, html: { class: 'author'} %>
                             <div class="metadata">
                                 <div class="date"><%= n.created_at %></div>
                             </div>

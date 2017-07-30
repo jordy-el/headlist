@@ -5,17 +5,17 @@
                 <%= image_tag c.user.avatar.url(:thumb) %>
             </a>
             <div class="content">
-                <%= link_to "#{c.user.full_name}", timeline_path(c.user), html: { class: "author" } %>
+                <%= link_to "#{c.user.full_name}", timeline_path(c.user), html: { class: 'author'} %>
                 <div class="metadata">
-                    <div class="date"><%= time_ago_in_words(c.created_at) + " ago" %></div>
+                    <div class="date"><%= time_ago_in_words(c.created_at) + ' ago' %></div>
                 </div>
                 <div class="text">
                     <%= c.content %>
                 </div>
                 <% if c.user == current_user %>
                     <div class="actions">
-                        <%= link_to semantic_icon('thumbs outline up') + " " + c.votes_for.length.to_s + " Like", likes_path(c, type: :comment), method: :post, class: "like" %>
-                        <%= link_to "Delete", comment_path(c), method: :delete, class: "delete", data: { confirm: "Are you sure? That can't be undone" } %>
+                        <%= link_to semantic_icon('thumbs outline up') + ' ' + c.votes_for.length.to_s + ' Like', likes_path(c, type: :comment), method: :post, class: 'like' %>
+                        <%= link_to 'Delete', comment_path(c), method: :delete, class: 'delete', data: {confirm: "Are you sure? That can't be undone" } %>
                     </div>
                 <% end %>
             </div>

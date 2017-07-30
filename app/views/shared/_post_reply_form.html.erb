@@ -1,9 +1,9 @@
-<%= form_for @comment, html: { class: "ui reply form" } do |f| %>
+<%= form_for @comment, html: { class: 'ui reply form'} do |f| %>
     <%= f.hidden_field :post, value: post.id %>
     <div class="field">
         <%= f.text_field :content %>
     </div>
     <div class="field">
-        <%= f.submit "Reply", class: "ui fluid primary button" %>
+        <%= f.submit 'Reply', class: 'ui fluid primary button' %>
     </div>
 <% end %>

@@ -9,4 +9,4 @@
 first_names = %w(John Jack James Johnny Jerry Julian Julia Jorpo Jesse Jessie Jenny)
 last_names = %w(Jones Jackson Janefield Jane Joo Jeans)
 
-first_names.each { |f| last_names.each { |l| User.new(first_name: f, last_name: l, email: "#{f}@#{l}.com", password: "password", password_confirmation: "password").save! } }
+first_names.each { |f| last_names.each { |l| User.new(first_name: f, last_name: l, email: "#{f}@#{l}.com", password: 'password', password_confirmation: 'password').save! } }

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -65,5 +65,5 @@ gem 'jquery-rails'
 gem 'figaro'
 gem 'has_friendship', git: 'https://github.com/adamjleonard/has_friendship.git'
 gem 'kaminari'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'acts_as_votable'

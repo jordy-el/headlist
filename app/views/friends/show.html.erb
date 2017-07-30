@@ -1,3 +1,4 @@
+<%# TODO - paginate/hide lengthy lists %>
 <%= render 'shared/links', location: :friends %>
 <div class="ui one column centered grid">
     <div class="column" style="width: 60vw; min-width: 450px;">
@@ -8,11 +9,11 @@
                     <%= @user == current_user ? 'Your ' : "#{@user.first_name}'s " %>Friends
                 </h2>
                 <div class="ui list">
-                    <% @friends.each do |f| %>
+                    <% @user.friends.each do |f| %>
                         <div class="item">
-                            <%= image_tag f.avatar.url(:thumb), class: "ui avatar image" %>
+                            <%= image_tag f.avatar.url(:thumb), class: 'ui avatar image' %>
                             <div class="content">
-                                <%= link_to "#{f.first_name} #{f.last_name}", timeline_path(f), class: "header" %>
+                                <%= link_to "#{f.first_name} #{f.last_name}", timeline_path(f), class: 'header' %>
                             </div>
                         </div>
                     <% end %>
@@ -23,14 +24,14 @@
                     <div class="ui segment">
                         <h4 class="ui center aligned dividing header">Friend Requests</h4>
                         <div class="ui list">
-                            <% @requests.each do |r| %>
+                            <% @user.requested_friends.each do |r| %>
                                 <div class="item">
-                                    <%= image_tag r.avatar.url(:thumb), class: "ui avatar image" %>
+                                    <%= image_tag r.avatar.url(:thumb), class: 'ui avatar image' %>
                                     <div class="content">
-                                        <%= link_to "#{r.first_name} #{r.last_name}", timeline_path(r), class: "header" %>
+                                        <%= link_to "#{r.first_name} #{r.last_name}", timeline_path(r), class: 'header' %>
                                         <div class="description">
-                                            <%= link_to "Accept", accept_request_path(r), method: :post, class: "left floated" %>
-                                            <%= link_to "Decline", decline_request_path(r), method: :post, class: "right floated" %>
+                                            <%= link_to 'Accept', accept_request_path(r), method: :post, class: 'left floated' %>
+                                            <%= link_to 'Decline', decline_request_path(r), method: :post, class: 'right floated' %>
                                         </div>
                                     </div>
                                 </div>
@@ -40,11 +41,11 @@
                     <div class="ui segment">
                         <h4 class="ui center aligned dividing header">Your Pending Requests</h4>
                         <div class="ui list">
-                            <% @pending.each do |p| %>
+                            <% @user.pending_friends.each do |p| %>
                                 <div class="item">
-                                    <%= image_tag p.avatar.url(:thumb), class: "ui avatar image" %>
+                                    <%= image_tag p.avatar.url(:thumb), class: 'ui avatar image' %>
                                     <div class="content">
-                                        <%= link_to "#{p.first_name} #{p.last_name}", timeline_path(p), class: "header" %>
+                                        <%= link_to "#{p.first_name} #{p.last_name}", timeline_path(p), class: 'header' %>
                                     </div>
                                 </div>
                             <% end %>

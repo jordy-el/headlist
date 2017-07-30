@@ -1,11 +1,12 @@
+<%# TODO - more information on cards %>
 <div class="ui cards">
     <% @suggested_friends.each do |r| %>
         <div class="ui raised centered card">
             <a href="<%= timeline_path(r) %>" class="content">
-                <%= image_tag r.avatar.url(:thumb), class: "left floated tiny ui circular image" %>
+                <%= image_tag r.avatar.url(:thumb), class: 'left floated tiny ui circular image' %>
                 <div class="header"><%= "#{r.first_name} #{r.last_name}" %></div>
             </a>
-            <%= link_to "Add Friend", send_request_path(r), method: :post, class: "ui bottom attached green basic button" %>
+            <%= link_to 'Add Friend', send_request_path(r), method: :post, class: 'ui bottom attached green basic button' %>
         </div>
     <% end %>
 </div>

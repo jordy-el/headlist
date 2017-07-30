@@ -15,6 +15,8 @@ class NotificationsController < ApplicationController
       redirect_to self_timeline_path
     when 'Friend'
       redirect_to self_friends_path
+      else
+        redirect_to self_timeline_path
     end
   end
 

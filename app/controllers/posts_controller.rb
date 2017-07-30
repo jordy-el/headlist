@@ -8,15 +8,15 @@ class PostsController < ApplicationController
       .or(Post.where(user: current_user))
     @location = :all
     if params[:filter]
-      if params[:filter] == "photos"
+      if params[:filter] == 'photos'
         @posts = @posts.where.not(photo_file_name: nil)
         @location = :photos
-      elsif params[:filter] == "news"
+      elsif params[:filter] == 'news'
         @posts = @posts.where(photo_file_name: nil)
         @location = :news
       end
     end
-    @posts = @posts.page(params[:page]).per(20).order(created_at: :desc)
+    @posts = @posts.page(params[:page]).per(7).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
     @comment = Comment.new
   end
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
     post_parameters[:user] = User.find(post_params[:user])
     @post = Post.new(post_parameters)
     if @post.save!
-      @post.timeline.user == current_user || Notification.create(user: @post.timeline.user, message: "#{@post.user.first_name} #{@post.user.last_name} posted on your timeline", notification_type: "Post")
+      @post.timeline.user == current_user || Notification.create(user: @post.timeline.user, message: "#{@post.user.first_name} #{@post.user.last_name} posted on your timeline", notification_type: 'Post')
       redirect_to request.referrer
     else
       redirect_to request.referrer

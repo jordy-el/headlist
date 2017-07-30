@@ -5,43 +5,43 @@
             <a class="item" data-tab="second">Sign Up</a>
         </div>
         <div class="ui bottom attached tab segment active" data-tab="first">
-            <%= form_for(@user, url: session_path(User), html: { class: "ui form" }) do |f| %>
+            <%= form_for(@user, url: session_path(User), html: { class: 'ui form'}) do |f| %>
                 <div class="field">
-                    <%= f.email_field :email, placeholder: "Email" %>
+                    <%= f.email_field :email, placeholder: 'Email' %>
                 </div>
 
                 <div class="field">
-                    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+                    <%= f.password_field :password, autocomplete: 'off', placeholder: 'Password' %>
                 </div>
 
-                <%= f.submit "Log in", class: "ui primary button" %>
-                <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+                <%= f.submit 'Log in', class: 'ui primary button' %>
+                <%= link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path %>
             <% end %>
         </div>
         <div class="ui bottom attached tab segment" data-tab="second">
-            <%= form_for(@user, url: registration_path(@user), html: { class: "ui form" }) do |f| %>
+            <%= form_for(@user, url: registration_path(@user), html: { class: 'ui form'}) do |f| %>
 
                 <div class="field">
-                    <%= f.text_field :first_name, placeholder: "First Name" %>
+                    <%= f.text_field :first_name, placeholder: 'First Name' %>
                 </div>
 
                 <div class="field">
-                    <%= f.text_field :last_name, placeholder: "Surname" %>
+                    <%= f.text_field :last_name, placeholder: 'Surname' %>
                 </div>
 
                 <div class="field">
-                    <%= f.email_field :email, placeholder: "Email" %>
+                    <%= f.email_field :email, placeholder: 'Email' %>
                 </div>
 
                 <div class="field">
-                    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+                    <%= f.password_field :password, autocomplete: 'off', placeholder: 'Password' %>
                 </div>
 
                 <div class="field">
-                    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation" %>
+                    <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Password Confirmation' %>
                 </div>
 
-                <%= f.submit "Sign up", class: "ui primary button" %>
+                <%= f.submit 'Sign up', class: 'ui primary button' %>
             <% end %>
         </div>
         <script>
