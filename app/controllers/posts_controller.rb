@@ -16,7 +16,7 @@ class PostsController < ApplicationController
         @location = :news
       end
     end
-    @posts = @posts.page(params[:page]).per(7).order(created_at: :desc)
+    @posts = @posts.page(params[:page]).per(5).order(created_at: :desc)
     @suggested_friends = current_user.suggested_friends
     @comment = Comment.new
   end
