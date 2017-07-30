@@ -38,7 +38,5 @@
             </div>
         </div>
     <% end %>
-    <% if @posts.length >= 20 %>
-        <%= paginate @posts %>
-    <% end %>
+    <%= paginate @posts %>
 </div>
