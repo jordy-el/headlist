@@ -7,10 +7,12 @@
     </div>
     <div class="ui bottom attached tab segment active" data-tab="first">
         <div class="field">
-            <% if @user == current_user %>
+            <% if @user == current_user && params[:controller] == 'timelines' %>
                 <%= f.text_area :content, rows: '2', placeholder: 'Write something on your timeline!' %>
-            <% else %>
+            <% elsif @user != current_user && params[:controller] == 'timelines' %>
                 <%= f.text_area :content, rows: '2', placeholder: "Say something to #{@user.first_name}!" %>
+            <% else %>
+                <%= f.text_area :content, rows: '2', placeholder: 'Write a status!' %>
             <% end %>
         </div>
         <div class="field">

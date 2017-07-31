@@ -1,42 +1,44 @@
 <%# TODO - clearly separate posts %>
-<div class="ui large comments" id="feed">
-    <h3 class="ui dividing header"><%= locals[:header] %></h3>
-    <% @posts.each do |p| %>
-        <div class="comment post">
-            <a class="avatar" href="<%= post_path(p) %>">
-                <%= image_tag p.user.avatar.url(:thumb) %>
-            </a>
-            <div class="content">
-                <%= link_to "#{p.user.full_name}", timeline_path(p.user), html: { class: 'author' } %>
-                <% if p.timeline != p.user.timeline %>
-                     > 
-                    <%= link_to "#{p.timeline.user.first_name} #{p.timeline.user.last_name}", timeline_path(p.timeline.user), html: { class: 'author' } %>
-                <% end %>
-                <div class="metadata">
-                    <div class="date"><%= time_ago_in_words(p.created_at) + ' ago' %></div>
-                </div>
-                <div class="text">
-                    <% if p.photo.file? %>
-                        <a href="<%= post_path(p) %>"><%= image_tag p.photo.url(:thumb), class: 'ui rounded bordered fluid image' %></a>
-                        <%= p.description %>
-                    <% else %>
-                        <%= p.content %>
+<div class="ui segment">
+    <div class="ui large comments" id="feed">
+        <h3 class="ui dividing header"><%= locals[:header] %></h3>
+        <% @posts.each do |p| %>
+            <div class="comment post">
+                <a class="avatar" href="<%= post_path(p) %>">
+                    <%= image_tag p.user.avatar.url(:thumb) %>
+                </a>
+                <div class="content">
+                    <%= link_to "#{p.user.full_name}", timeline_path(p.user), html: { class: 'author' } %>
+                    <% if p.timeline != p.user.timeline %>
+                         >
+                        <%= link_to "#{p.timeline.user.first_name} #{p.timeline.user.last_name}", timeline_path(p.timeline.user), html: { class: 'author' } %>
                     <% end %>
-                </div>
-                <div class="actions">
-                    <%= link_to semantic_icon('thumbs outline up') + ' ' + p.votes_for.length.to_s + ' Like', likes_path(p, type: :post), method: :post, class: 'like' %>
-                    <%= link_to 'View', post_path(p), class: 'show' %>
-                    <a class="reply">Reply</a>
-                    <% if p.user == current_user %>
-                        <%= link_to 'Delete', post_path(p), method: :delete, class: 'delete', data: { confirm: "Are you sure? That can't be undone" } %>
+                    <div class="metadata">
+                        <div class="date"><%= time_ago_in_words(p.created_at) + ' ago' %></div>
+                    </div>
+                    <div class="text">
+                        <% if p.photo.file? %>
+                            <a href="<%= post_path(p) %>"><%= image_tag p.photo.url(:thumb), class: 'ui rounded bordered fluid image' %></a>
+                            <%= p.description %>
+                        <% else %>
+                            <%= p.content %>
+                        <% end %>
+                    </div>
+                    <div class="actions">
+                        <%= link_to semantic_icon('thumbs outline up') + ' ' + p.votes_for.length.to_s + ' Like', likes_path(p, type: :post), method: :post, class: 'like' %>
+                        <%= link_to 'View', post_path(p), class: 'show' %>
+                        <a class="reply">Reply</a>
+                        <% if p.user == current_user %>
+                            <%= link_to 'Delete', post_path(p), method: :delete, class: 'delete', data: { confirm: "Are you sure? That can't be undone" } %>
+                        <% end %>
+                    </div>
+                    <% unless p.comments.nil? %>
+                        <%= render 'shared/post_comments', post: p %>
                     <% end %>
+                    <%= render 'shared/post_reply_form', post: p %>
                 </div>
-                <% unless p.comments.nil? %>
-                    <%= render 'shared/post_comments', post: p %>
-                <% end %>
-                <%= render 'shared/post_reply_form', post: p %>
             </div>
-        </div>
-    <% end %>
-    <%= paginate @posts %>
+        <% end %>
+        <%= paginate @posts %>
+    </div>
 </div>
