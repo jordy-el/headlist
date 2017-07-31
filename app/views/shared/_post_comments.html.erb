@@ -12,12 +12,12 @@
                 <div class="text">
                     <%= c.content %>
                 </div>
-                <% if c.user == current_user %>
-                    <div class="actions">
-                        <%= link_to semantic_icon('thumbs outline up') + ' ' + c.votes_for.length.to_s + ' Like', likes_path(c, type: :comment), method: :post, class: 'like' %>
+                <div class="actions">
+                    <%= link_to semantic_icon('thumbs outline up') + ' ' + c.votes_for.length.to_s + ' Like', likes_path(c, type: :comment), method: :post, class: 'like' %>
+                    <% if c.user == current_user %>
                         <%= link_to 'Delete', comment_path(c), method: :delete, class: 'delete', data: {confirm: "Are you sure? That can't be undone" } %>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
             </div>
         </div>
     <% end %>

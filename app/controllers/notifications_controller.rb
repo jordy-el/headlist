@@ -10,13 +10,13 @@ class NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
     @notification.seen = true
     @notification.save!
-    case @notification.notification_type
-    when 'Post'
-      redirect_to self_timeline_path
-    when 'Friend'
+    case @notification.notification_type.to_sym
+    when :friend_request, :friend_accept
       redirect_to self_friends_path
-      else
-        redirect_to self_timeline_path
+    when :post_reply, :post_like, :timeline_post, :comment_like
+      redirect_to post_path(@notification.post)
+    else
+      redirect_to self_timeline_path
     end
   end
 

@@ -7,6 +7,14 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_parameters)
     @comment.user = current_user
     if @comment.save!
+      unless @comment.post.user == current_user
+        Notification.create(
+          user: @comment.post.user,
+          message: "#{current_user.full_name} replied to your post",
+          notification_type: :post_reply,
+          post: @comment.post
+        )
+      end
       redirect_to post_path(@comment.post)
     else
       redirect_to feed_path

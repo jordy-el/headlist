@@ -49,11 +49,10 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <% if @user == current_user %>
-                    <%= link_to 'Edit', edit_biography_path(current_user), class: 'ui bottom attached basic green button' %>
-                <% end %>
             </div>
+            <% if @user == current_user %>
+                <%= link_to 'Edit', edit_biography_path(current_user), class: 'ui bottom attached basic green button' %>
+            <% end %>
         </div>
     </div>
-<%# TODO - figure out where last 'div' tag came from %>
+</div>

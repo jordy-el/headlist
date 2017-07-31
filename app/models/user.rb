@@ -51,4 +51,8 @@ class User < ApplicationRecord
       .where.not(id: self.requested_friends)
       .take(5)
   end
+
+  def notifications?
+    !notifications.where(seen: false).empty?
+  end
 end

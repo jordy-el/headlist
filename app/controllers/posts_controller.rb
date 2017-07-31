@@ -37,7 +37,14 @@ class PostsController < ApplicationController
     post_parameters[:user] = User.find(post_params[:user])
     @post = Post.new(post_parameters)
     if @post.save!
-      @post.timeline.user == current_user || Notification.create(user: @post.timeline.user, message: "#{@post.user.first_name} #{@post.user.last_name} posted on your timeline", notification_type: 'Post')
+      unless @post.timeline.user == current_user
+        Notification.create(
+          user: @post.timeline.user,
+          message: "#{@post.user.full_name} posted on your timeline",
+          notification_type: :timeline_post,
+          post: @post
+        )
+      end
       redirect_to request.referrer
     else
       redirect_to request.referrer

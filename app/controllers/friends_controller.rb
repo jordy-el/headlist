@@ -9,6 +9,11 @@ class FriendsController < ApplicationController
   def accept
     @requester = User.find(params[:id])
     current_user.accept_request(@requester)
+    Notification.create(
+      user: @requester,
+      message: "#{current_user.full_name} accepted your friend request",
+      notification_type: :friend_accept
+    )
     redirect_to self_friends_path
   end
 
@@ -25,7 +30,7 @@ class FriendsController < ApplicationController
     Notification.create(
       user: @user,
       message: "#{@user.full_name} sent you a friend request",
-      notification_type: 'Friend Request'
+      notification_type: :friend_request
     )
     redirect_to self_timeline_path
   end

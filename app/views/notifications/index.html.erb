@@ -1,4 +1,4 @@
-<div class="ui centered grid">
+<div class="ui centered grid" style="position: relative; top: 20px;">
     <div class="column" style="width: 60vw; min-width: 450px;">
         <% if @notifications %>
             <div class="ui segments">
@@ -11,16 +11,16 @@
                 <% if @notifications.empty? %>
                     <div class="ui blue center aligned segment">
                         <div class="content">
-                            <h5 class="ui header">You have no notifications</h5>
+                            <h5 class="ui header">You have no new notifications</h5>
                         </div>
                     </div>
                 <% end %>
                 <% @notifications.each_with_index do |n, index| %>
                     <div class="ui <%= 'blue' if index == 0 %> center aligned segment">
                         <div class="content">
-                            <%= link_to "#{n.notification_type}", notifications_click_path(n), method: :post, html: { class: 'author'} %>
+                            <%= link_to "#{n.notification_text}", notifications_click_path(n), method: :post, html: { class: 'author'} %>
                             <div class="metadata">
-                                <div class="date"><%= n.created_at %></div>
+                                <div class="date"><%= time_ago_in_words(n.created_at) %> ago</div>
                             </div>
                             <div class="text">
                                 <%= n.message %>
