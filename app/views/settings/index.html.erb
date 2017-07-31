@@ -1,0 +1,22 @@
+<div class="ui centered grid">
+    <div class="column" style="width: 60vw; min-width: 450px;">
+        <%= form_for @user, url: setting_path(@user), html: { class: 'ui form' }, method: :put do |f| %>
+            <h4 class="ui dividing header">Settings</h4>
+            <div class="two fields">
+                <div class="field">
+                    <%= f.label :date_of_birth %>
+                    <%= f.date_field :date_of_birth %>
+                </div>
+                <div class="field">
+                    <%= f.label :city %>
+                    <%= f.text_field :city, placeholder: 'City' %>
+                </div>
+            </div>
+            <div class="field">
+                <%= f.label :avatar, 'Profile Photo' %>
+                <%= f.file_field :avatar %>
+            </div>
+            <%= f.submit 'Submit', class: 'ui primary button' %>
+        <% end %>
+    </div>
+</div>

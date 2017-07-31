@@ -19,6 +19,7 @@ class User < ApplicationRecord
     user.timeline = Timeline.create(user: user)
     user.biography = Biography.create(user: user)
   end
+  before_validation :replace_blank_with_nil
 
   def self.from_omniauth(auth)
     if !!User.find_by(email: auth.info.email, uid: nil)
@@ -54,5 +55,13 @@ class User < ApplicationRecord
 
   def notifications?
     !notifications.where(seen: false).empty?
+  end
+
+  private
+
+  def replace_blank_with_nil
+    attributes.each do |key, value|
+      self[key] = nil if value == ''
+    end
   end
 end
