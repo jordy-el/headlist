@@ -6,7 +6,6 @@
     <% if user_signed_in? %>
         <%= link_to 'Feed', feed_path, class: 'item' %>
         <%= link_to current_user.first_name, self_timeline_path, class: 'item' %>
-        <a class="item">Search</a>
         <div class="menu right">
             <div class="ui dropdown item">
                 <i class="icons">
