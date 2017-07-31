@@ -1,4 +1,3 @@
-<%# TODO - make website links work %>
 <%= render 'shared/links', location: :bio %>
 <div class="ui centered grid">
     <div class="column" style="width: 60vw; min-width: 450px;">
@@ -31,7 +30,7 @@
                             <i class="linkify icon"></i>
                             <div class="content">
                                 <% if @biography.website %>
-                                    <%= link_to @biography.website, @biography.website %>
+                                    <%= link_to @biography.website, "http://#{@biography.website}", target: :_blank %>
                                 <% else %>
                                     <%= 'No website provided' %>
                                 <% end %>
@@ -41,7 +40,7 @@
                             <i class="github icon"></i>
                             <div class="content">
                                 <% if @biography.github %>
-                                    <%= link_to @biography.github, @biography.github %>
+                                    <%= link_to @biography.github, "https://#{@biography.github}", target: :_blank %>
                                 <% else %>
                                     <%= 'No github provided' %>
                                 <% end %>
